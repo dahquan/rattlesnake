@@ -15,7 +15,7 @@ const bot = new Bot({
   server: process.env.SLITHER_SERVER || '199.21.79.246:444'
 })
 
-// Just listen for the leadboard event then disconnect
+// Just listen for the leaderboard event then disconnect
 bot.once('leaderboard', function(leaderboard) {
   console.log()
   console.log('====== TOP ' + leaderboard.length + ' ======')
