@@ -1,8 +1,9 @@
-![alt text](logo.png "RattleSnake")
+![alt text](https://raw.githubusercontent.com/dahquan/rattlesnake/master/logo.png "RattleSnake")
 
 # Rattle Snake
 
-[![Join the chat at https://gitter.im/dahquan/rattlesnake](https://badges.gitter.im/dahquan/rattlesnake.svg)](https://gitter.im/dahquan/rattlesnake?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/dahquan/rattlesnake](https://badges.gitter.im/dahquan/rattlesnake.svg)](https://gitter.im/dahquan/rattlesnake?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [[Documentation](http://dahquan.github.io/)]
+[[Examples](http://dahquan.github.io/examples.html)]
 
 An Open Source Slither.io Client
 
