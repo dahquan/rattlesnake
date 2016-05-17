@@ -16,6 +16,8 @@ Slither servers cap the amount of connections that can be made from your address
 
 ***Skip this step if you will not be using a proxy server. Keep in mind that if you spawn too many bots from your IP, you or your bots may not be able to login again after you die**
 
+*Only supports HTTP proxies right now.*
+
 Paste your proxies inside of ```examples/proxies.txt``` in the format below:
 
 ```
