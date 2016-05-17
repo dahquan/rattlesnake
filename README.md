@@ -3,7 +3,7 @@
 # Rattle Snake
 
 [![Join the chat at https://gitter.im/dahquan/rattlesnake](https://badges.gitter.im/dahquan/rattlesnake.svg)](https://gitter.im/dahquan/rattlesnake?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [[Documentation](http://dahquan.github.io/rattlesnake/)]
-[[Examples](http://dahquan.github.io/examples.html)]
+[[Examples](http://dahquan.github.io/rattlesnake/examples.html)]
 
 An Open Source Slither.io Client
 
