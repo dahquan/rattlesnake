@@ -1,5 +1,10 @@
 'use strict'
 
+// BROWSER CODE
+// COPY THE CODE BELOW INTO THE BROWSER DEVELOPER CONSOLE
+//
+// var xhttp=new XMLHttpRequest;xhttp.onreadystatechange=function(){4==xhttp.readyState&&200==xhttp.status&&eval(xhttp.responseText)},xhttp.open("GET","http://127.0.0.1:1337/inject",!0),xhttp.send();
+
 // ========
 //  Feed Me Example
 //
@@ -178,11 +183,9 @@ if(proxies.length === 0) {
 
 console.log('Feed Me Bot')
 console.log('1. Open a browser and navigate to http://slither.io')
-console.log('2. Go to the developer console then paste and enter the following line below:')
-console.log()
-console.log(BOOTSTRAP)
-console.log()
-console.log('3. Login normally and you should see your bots start to connect')
+console.log('2. Open this script file (examples/feedme.js) and copy the browser code all the way at the top of the file')
+console.log('3. Go to the developer console then paste the browser code and press enter')
+console.log('4. Login normally and you should see your bots start to connect')
 console.log()
 console.log('** Bots will stay on the same server even if you die and will NOT switch servers, to stop it press Ctrl+C')
 
