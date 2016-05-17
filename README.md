@@ -30,6 +30,7 @@ Unlike many other slither.io bots, this one does not require a browser and can b
 - [ ] Track food
 - [ ] Track snake angles
 - [ ] Sectors
+- [ ] Proxy auth, HTTPS, SOCKS
 - [ ] ???
 
 ## Code Example
