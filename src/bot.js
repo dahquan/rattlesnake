@@ -1,6 +1,5 @@
 'use strict'
 
-import WebSocket from 'ws'
 import { client as WebSocketClient } from 'websocket'
 import { EventEmitter } from 'events'
 import util from 'util'
@@ -254,4 +253,16 @@ class Bot extends EventEmitter {
   }
 }
 
+// For some reason a ton of slither.io servers don't return the expected WebSocket
+// accept key during handshake. This causes the bot to terminate the connection.
+//
+// This "Hack" will stop it from closing
+//
+// TODO: Figure out the cause of this
+WebSocketClient.prototype.failHandshake = function(reason) {
+  if(reason.indexOf('Sec-WebSocket-Accept header from server didn\'t match') >= 0) {
+    // Ignore it and accept
+    this.succeedHandshake()
+  }
+}
 export default Bot
