@@ -53,7 +53,7 @@
         data-chapter-title="feedme.js"
         data-filepath="examples/feedme.md"
         data-basepath=".."
-        data-revision="Mon May 16 2016 18:01:38 GMT-0700 (PDT)"
+        data-revision="Mon May 16 2016 18:20:27 GMT-0700 (PDT)"
         data-innerlanguage="">
     
 
@@ -220,6 +220,11 @@
 <h4 id="1-proxy-settings">1. Proxy Settings</h4>
 <p>Slither servers cap the amount of connections that can be made from your address. If you request too many you will be temporary blocked from connecting to the server. It is recommended to run no more then 3 snakes per proxy.</p>
 <p><strong>*Skip this step if you will not be using a proxy server. Keep in mind that if you spawn too many bots from your IP, you or your bots may not be able to login again after you die</strong></p>
+<p>Paste your proxies inside of <code>examples/proxies.txt</code> in the format below:</p>
+<pre><code>5.5.5.5:1234
+5.5.5.6:4321
+...
+</code></pre><p>Do not use too many proxies because the script will spawn <code>the amount of proxies * 3</code> bots by default. So if you enter 20 proxies, 60 bots will be spawned. You can change the amount of bots per proxy inside of <code>examples/feedme.js</code> in the variable <code>perProxy</code></p>
 <h4 id="2-start-the-script">2. Start the script</h4>
 <pre><code>node examples/feedme.js
 </code></pre><h4 id="2-inject-browser-code">2. Inject browser code</h4>

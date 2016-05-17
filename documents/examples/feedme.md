@@ -16,6 +16,16 @@ Slither servers cap the amount of connections that can be made from your address
 
 ***Skip this step if you will not be using a proxy server. Keep in mind that if you spawn too many bots from your IP, you or your bots may not be able to login again after you die**
 
+Paste your proxies inside of ```examples/proxies.txt``` in the format below:
+
+```
+5.5.5.5:1234
+5.5.5.6:4321
+...
+```
+
+Do not use too many proxies because the script will spawn ```the amount of proxies * 3``` bots by default. So if you enter 20 proxies, 60 bots will be spawned. You can change the amount of bots per proxy inside of ```examples/feedme.js``` in the variable ```perProxy```
+
 #### 2. Start the script
 
 ```
