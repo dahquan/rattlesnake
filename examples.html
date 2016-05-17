@@ -1,0 +1,292 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Examples | RattleSnake Guide</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="./examples/feedme.html" />
+    
+    
+    <link rel="prev" href="./development.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="3"
+        data-chapter-title="Examples"
+        data-filepath="examples.md"
+        data-basepath="."
+        data-revision="Mon May 16 2016 17:40:12 GMT-0700 (PDT)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="./index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        RattleSnake
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="requirements.html">
+            
+                
+                    <a href="./requirements.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Requirements
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="development.html">
+            
+                
+                    <a href="./development.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Development
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="3" data-path="examples.html">
+            
+                
+                    <a href="./examples.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Examples
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="examples/feedme.html">
+            
+                
+                    <a href="./examples/feedme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        feedme.js
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="examples/leaderboard.html">
+            
+                
+                    <a href="./examples/leaderboard.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        leaderboard.js
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="examples/surroundings.html">
+            
+                
+                    <a href="./examples/surroundings.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        surroundings.js
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="./" >RattleSnake Guide</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <p><img src="logo.png" alt="alt text" title="RattleSnake"></p>
+<h1 id="examples">Examples</h1>
+<p>RattleSnake has a couple examples already made for you to play around with.</p>
+<h2 id="get-the-source">Get the source</h2>
+<p>You can get the source by cloning <code>https://github.com/dahquan/rattlesnake.git</code> or downloading the current version <a href="https://github.com/dahquan/rattlesnake/archive/master.zip" target="_blank">here</a>.</p>
+<h4 id="requirements">Requirements</h4>
+<pre><code>git clone https://github.com/dahquan/rattlesnake.git
+cd rattlesnake
+npm install
+</code></pre><h2 id="changing-your-name">Changing your name</h2>
+<h5 id="linuxosxnix">Linux/OSX/*nix</h5>
+<p><code>export SLITHER_SERVER_NAME=&lt;name&gt;</code></p>
+<h5 id="windows">Windows</h5>
+<p><code>set SLITHER_SERVER_NAME=&lt;name&gt;</code></p>
+<h2 id="changing-the-server">Changing the Server</h2>
+<p>For most of the examples you can change the server by typing the command below or manually changing it inside the file.</p>
+<h5 id="linuxosxnix">Linux/OSX/*nix</h5>
+<p><code>export SLITHER_SERVER=&lt;ip&gt;:&lt;port&gt;</code></p>
+<h5 id="windows">Windows</h5>
+<p><code>set SLITHER_SERVER=&lt;ip&gt;:&lt;port&gt;</code></p>
+<h2 id="included-scripts">Included Scripts</h2>
+<h6 id="feedmejs"><a href="examples/feedme.html">feedme.js</a></h6>
+<p>Spawns many snakes that go to your current position and crash into you.</p>
+<h6 id="leaderboardjs"><a href="examples/leaderboard.html">leaderboard.js</a></h6>
+<p>Prints out the current leaderboard once connected to the the server</p>
+<h6 id="surroundingsjs"><a href="examples/surroundings.html">surroundings.js</a></h6>
+<p>Prints out other snakes that come in and out of the view</p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="./development.html" class="navigation navigation-prev " aria-label="Previous page: Development"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="./examples/feedme.html" class="navigation navigation-next " aria-label="Next page: feedme.js"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="gitbook/app.js"></script>
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-github/plugin.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"github":{"url":"https://github.com/dahquan/rattlesnake"},"layout":{"headerPath":"_layouts/website/header.html"},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

@@ -1,0 +1,293 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>feedme.js | RattleSnake Guide</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../examples/leaderboard.html" />
+    
+    
+    <link rel="prev" href="../examples.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="3.1"
+        data-chapter-title="feedme.js"
+        data-filepath="examples/feedme.md"
+        data-basepath=".."
+        data-revision="Mon May 16 2016 17:40:12 GMT-0700 (PDT)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        RattleSnake
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="requirements.html">
+            
+                
+                    <a href="../requirements.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Requirements
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="development.html">
+            
+                
+                    <a href="../development.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Development
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="examples.html">
+            
+                
+                    <a href="../examples.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Examples
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="3.1" data-path="examples/feedme.html">
+            
+                
+                    <a href="../examples/feedme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        feedme.js
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="examples/leaderboard.html">
+            
+                
+                    <a href="../examples/leaderboard.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        leaderboard.js
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="examples/surroundings.html">
+            
+                
+                    <a href="../examples/surroundings.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        surroundings.js
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >RattleSnake Guide</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <p><img src="../logo.png" alt="alt text" title="RattleSnake"></p>
+<h1 id="feedmejs">feedme.js</h1>
+<p>Spawns snakes that will go to your current position and crash into you</p>
+<p><a href="http://www.youtube.com/watch?v=J2sZUos6et8" target="_blank">View video on Youtube</a></p>
+<h3 id="run-the-example">Run the Example</h3>
+<p>Unlike the other scripts, running this example takes a tiny bit more work</p>
+<h4 id="1-proxy-settings">1. Proxy Settings</h4>
+<p>Slither servers cap the amount of connections that can be made from your address. If you request too many you will be temporary blocked from connecting to the server. It is recommended to run no more then 3 snakes per proxy.</p>
+<p><strong>*Skip this step if you will not be using a proxy server. Keep in mind that if you spawn too many bots from your IP, you or your bots may not be able to login again after you die</strong></p>
+<h4 id="2-start-the-script">2. Start the script</h4>
+<pre><code>node examples/feedme.js
+</code></pre><h4 id="2-inject-browser-code">2. Inject browser code</h4>
+<p>It&apos;s now time to inject the browser code which will tell the bots where to find you.</p>
+<ol>
+<li>Go into your browsers console<ul>
+<li><a href="https://developer.chrome.com/devtools/docs/console" target="_blank">Chrome Instructions</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Tools/Browser_Console" target="_blank">Firefox Instructions</a></li>
+</ul>
+</li>
+<li>Paste and enter the code below into it</li>
+</ol>
+<pre><code>var xhttp=new XMLHttpRequest;xhttp.onreadystatechange=function(){4==xhttp.readyState&amp;&amp;200==xhttp.status&amp;&amp;eval(xhttp.responseText)},xhttp.open(&quot;GET&quot;,&quot;http://127.0.0.1:1337/inject&quot;,!0),xhttp.send();
+</code></pre><h3 id="3-login">3. Login</h3>
+<p>If you haven&apos;t received any errors yet then it&apos;s time to login. As soon as you press login the bots will spawn and start slithering their way to your current position.</p>
+<h3 id="controls">Controls</h3>
+<p>X - Speed up all bots</p>
+<p><strong><em>Note: Bots will not change servers if you decide to, you will have to restart this process again</em></strong></p>
+<p><strong><em>Another Note: There are people out there who are trying to have fun, try not to ruin it for them!</em></strong></p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../examples.html" class="navigation navigation-prev " aria-label="Previous page: Examples"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../examples/leaderboard.html" class="navigation navigation-next " aria-label="Next page: leaderboard.js"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-github/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"github":{"url":"https://github.com/dahquan/rattlesnake"},"layout":{"headerPath":"_layouts/website/header.html"},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

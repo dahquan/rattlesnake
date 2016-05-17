@@ -1,0 +1,14 @@
+{
+  "title": "RattleSnake Guide",
+  "plugins": [
+    "github"
+  ],
+  "pluginsConfig": {
+    "github": {
+      "url": "https://github.com/dahquan/rattlesnake"
+    },
+    "layout": {
+      "headerPath" : "_layouts/website/header.html"
+    }
+  }
+}
