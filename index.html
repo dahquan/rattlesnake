@@ -51,7 +51,7 @@
         data-chapter-title="RattleSnake"
         data-filepath="README.md"
         data-basepath="."
-        data-revision="Mon May 16 2016 18:20:27 GMT-0700 (PDT)"
+        data-revision="Mon May 16 2016 19:00:16 GMT-0700 (PDT)"
         data-innerlanguage="">
     
 
@@ -209,10 +209,10 @@
                 
                     <section class="normal" id="section-">
                     
-                        <p><img src="https://raw.githubusercontent.com/dahquan/rattlesnake/master/logo.png" alt="alt text" title="RattleSnake"></p>
+                        <p><img src="logo.png" alt="alt text" title="RattleSnake"></p>
 <h1 id="rattle-snake">Rattle Snake</h1>
-<p><a href="https://gitter.im/dahquan/rattlesnake?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge" target="_blank"><img src="https://badges.gitter.im/dahquan/rattlesnake.svg" alt="Join the chat at https://gitter.im/dahquan/rattlesnake"></a> [<a href="http://dahquan.github.io/" target="_blank">Documentation</a>]
-[<a href="http://dahquan.github.io/examples.html" target="_blank">Examples</a>]</p>
+<p><a href="https://gitter.im/dahquan/rattlesnake?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge" target="_blank"><img src="https://badges.gitter.im/dahquan/rattlesnake.svg" alt="Join the chat at https://gitter.im/dahquan/rattlesnake"></a> [<a href="http://dahquan.github.io/rattlesnake/" target="_blank">Documentation</a>]
+[<a href="http://dahquan.github.io/rattlesnake/examples.html" target="_blank">Examples</a>]</p>
 <p>An Open Source Slither.io Client</p>
 <p><strong><em>Needs more contributers! Better documentation coming soon!</em></strong></p>
 <h2 id="overview">Overview</h2>
@@ -234,7 +234,45 @@
 <li>[ ] Sectors</li>
 <li>[ ] ???</li>
 </ul>
-<h2 id="contributing">Contributing</h2>
+<h2 id="code-example">Code Example</h2>
+<p><code>npm install --save rattlesnake</code></p>
+<pre><code>&apos;use strict&apos;
+
+// ========
+// Leaderboard Example
+//
+// This example will get the top players on the leaderboard then disconnect
+//
+
+const Bot = require(&apos;rattlesnake&apos;)
+
+const bot = new Bot({
+  name: process.env.SLITHER_SERVER_NAME || &apos;RattleSnake&apos;,
+  // logLevel: &apos;debug&apos;,
+  server: process.env.SLITHER_SERVER || &apos;199.21.79.246:444&apos;
+})
+
+// Just listen for the leaderboard event then disconnect
+bot.once(&apos;leaderboard&apos;, function(leaderboard) {
+  console.log()
+  console.log(&apos;====== TOP &apos; + leaderboard.length + &apos; ======&apos;)
+  console.log()
+
+  leaderboard.forEach(function(entry, i) {
+    console.log(&apos;#&apos; + i + &apos;. &apos; + entry.name)
+  })
+
+  bot.close()
+})
+
+// Print any errors
+bot.on(&apos;error&apos;, function(error) {
+  console.log(&apos;Error: &apos; + error)
+})
+
+// Connect the bot
+bot.connect()
+</code></pre><h2 id="contributing">Contributing</h2>
 <p><strong><em>This client still needs a lot more development! Please feel free to submit pull requests, fork, star or open an issue if you happen to come across a bug.</em></strong></p>
 <p>Is there a feature we are missing? Open an issue!</p>
 <h2 id="special-thanks-to">Special Thanks To:</h2>
