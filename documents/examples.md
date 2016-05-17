@@ -9,6 +9,8 @@ RattleSnake has a couple examples already made for you to play around with.
 
 You can get the source by cloning ```https://github.com/dahquan/rattlesnake.git``` or downloading the current version [here](https://github.com/dahquan/rattlesnake/archive/master.zip).
 
+Before continuing make sure you have taken a look at the [requirements](requirements.md)
+
 ```
 cd rattlesnake
 npm install
