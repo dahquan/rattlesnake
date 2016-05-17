@@ -7,7 +7,7 @@ import { Logger, transports } from 'winston'
 import tunnel from 'tunnel'
 import SocksProxyAgent from 'socks-proxy-agent'
 
-import Packet from './lib/Packet'
+import Packet from './lib/packet'
 import Snake from './snake'
 import * as parser from './lib/parser'
 

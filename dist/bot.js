@@ -26,9 +26,9 @@ var _socksProxyAgent = require('socks-proxy-agent');
 
 var _socksProxyAgent2 = _interopRequireDefault(_socksProxyAgent);
 
-var _Packet = require('./lib/Packet');
+var _packet = require('./lib/packet');
 
-var _Packet2 = _interopRequireDefault(_Packet);
+var _packet2 = _interopRequireDefault(_packet);
 
 var _snake2 = require('./snake');
 
@@ -185,7 +185,7 @@ var Bot = function (_EventEmitter) {
       // Send the initial packet
       // SetUsernameAndSkin
       // https://github.com/ClitherProject/Slither.io-Protocol/blob/master/Protocol.md#packet-setusernameandskin
-      var initialPacket = new _Packet2.default(3 + this.name.length);
+      var initialPacket = new _packet2.default(3 + this.name.length);
       initialPacket.put(115);
       initialPacket.put(_slither.PROTOCOL_VERSION - 1);
       initialPacket.put(44);
