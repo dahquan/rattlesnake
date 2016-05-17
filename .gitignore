@@ -26,8 +26,16 @@ build/Release
 # Dependency directory
 node_modules
 
+# I had to keep this module because I edited it
+!node_modules/websocket
+
 # Optional npm cache directory
 .npm
 
 # Optional REPL history
 .node_repl_history
+
+
+# Misc
+
+.DS_Store
