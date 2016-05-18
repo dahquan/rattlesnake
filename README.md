@@ -9,6 +9,10 @@ An Open Source Slither.io Client
 
 ***Needs more contributers! Better documentation coming soon!***
 
+## Running Feeder Bot
+
+This seems to be the most popular question. For instructions on running the feeder bot or other included examples go [HERE](http://dahquan.github.io/rattlesnake/examples.html)
+
 ## Overview
 
 The main reason behind this bot is for educational purposes. With great power comes great responsibility, don't ruin the game for others!
