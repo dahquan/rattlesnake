@@ -24,7 +24,7 @@ Unlike many other slither.io bots, this one does not require a browser and can b
 ## NPM
 
 ```sh
-$ npm install image-webpack-loader --save-dev
+$ npm install --save rattlesnake
 ```
 
 ## Features
