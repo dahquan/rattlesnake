@@ -21,6 +21,12 @@ Unlike many other slither.io bots, this one does not require a browser and can b
 
 ***I don't plan on adding adding advanced functionality such as AI. The bot logic relies on what you would like to do with it. This should just be used as a library.***
 
+## NPM
+
+```sh
+$ npm install image-webpack-loader --save-dev
+```
+
 ## Features
 
 - [x] Connect to slither.io servers
@@ -38,8 +44,6 @@ Unlike many other slither.io bots, this one does not require a browser and can b
 - [ ] ???
 
 ## Code Example
-
-```npm install --save rattlesnake```
 
 ```
 'use strict'
