@@ -94,8 +94,12 @@ process.on('uncaughtException', function(err) { console.log(err) })
 // Bots alive
 let alive = 0
 
+function print(msg) {
+  console.log('[Bots Alive: ' + alive + ']\t\t' + msg)
+}
+
 function spawn() {
-  console.log('Spawning ' + (proxies.length * perProxy) + ' snakes')
+  print('Spawning ' + (proxies.length * perProxy) + ' snakes')
 
   proxies.forEach(function(proxy, pidx) {
     for(let i = 0; i < perProxy; i++) {
@@ -112,11 +116,13 @@ function spawn() {
       })
 
       bot.on('spawn', function() {
-        console.log(bot.name + 'spawned')
+        alive++
+        print(bot.name + ' spawned')
       })
 
-      bot.on('dead', function() {
-        console.log(bot.name + ' died')
+      bot.on('disconnected', function() {
+        alive--
+        print(bot.name + ' died')
       })
 
       bots.push(bot)
