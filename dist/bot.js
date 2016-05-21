@@ -71,6 +71,7 @@ var Bot = function (_EventEmitter) {
 
     var name = options.name;
     var server = options.server;
+    var skin = options.skin;
 
 
     _this.logger = new _winston.Logger({
@@ -81,6 +82,7 @@ var Bot = function (_EventEmitter) {
     _this.options = options;
     _this.name = name;
     _this.server = server;
+    _this.skin = skin;
 
     _this.conn = null;
     _this.connected = false;
@@ -122,9 +124,9 @@ var Bot = function (_EventEmitter) {
             proxy.host = proxy.host.substring(0, idx);
           }
 
-          // if(AUTH) {
-          //   proxy.proxyAuth = AUTH
-          // }
+          if (AUTH) {
+            proxy.proxyAuth = AUTH;
+          }
 
           requestOptions.agent = _tunnel2.default.httpOverHttp({
             proxy: proxy
@@ -188,7 +190,7 @@ var Bot = function (_EventEmitter) {
       var initialPacket = new _packet2.default(3 + this.name.length);
       initialPacket.put(115);
       initialPacket.put(_slither.PROTOCOL_VERSION - 1);
-      initialPacket.put(44);
+      initialPacket.put(this.skin || 44);
       initialPacket.putString(this.name);
       initialPacket.send(this.conn);
     }

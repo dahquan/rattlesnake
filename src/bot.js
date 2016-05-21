@@ -23,7 +23,7 @@ class Bot extends EventEmitter {
   constructor(options) {
     super()
 
-    const { name, server } = options
+    const { name, server, skin } = options
 
     this.logger = new Logger({
       level: options.logLevel || 'info',
@@ -33,6 +33,7 @@ class Bot extends EventEmitter {
     this.options = options
     this.name = name
     this.server = server
+    this.skin = skin
 
     this.conn = null
     this.connected = false
@@ -69,9 +70,9 @@ class Bot extends EventEmitter {
           proxy.host = proxy.host.substring(0, idx)
         }
 
-        // if(AUTH) {
-        //   proxy.proxyAuth = AUTH
-        // }
+        if(AUTH) {
+          proxy.proxyAuth = AUTH
+        }
 
         requestOptions.agent = tunnel.httpOverHttp({
           proxy
@@ -127,7 +128,7 @@ class Bot extends EventEmitter {
     const initialPacket = new Packet(3 + this.name.length)
     initialPacket.put(115)
     initialPacket.put(PROTOCOL_VERSION - 1)
-    initialPacket.put(44)
+    initialPacket.put(this.skin || 44)
     initialPacket.putString(this.name)
     initialPacket.send(this.conn)
   }

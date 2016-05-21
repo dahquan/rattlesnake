@@ -19,14 +19,18 @@ const fs = require('fs')
 const path = require('path')
 
 // Change the amount of bots per proxy
-const perProxy = 2
+let perProxy = 2
+if(!!process.env.SLITHER_PER_PROXY) {
+  perProxy = parseInt(process.env.SLITHER_PER_PROXY)
+}
 
-// Server we are connecting to (will be set later)
+// Skin to use on the bots
+// If skin === -1: Bot will use same skin as you
+let skin = -1
+
 let server = ''
-
-// The spot we want the snakes initially go to
-let gotoX = 14651;
-let gotoY = 30034;
+let gotoX = 0
+let gotoY = 0
 
 let proxies = fs
   .readFileSync(path.join(__dirname, 'proxies.txt'))
@@ -76,16 +80,13 @@ const INJECT =  "(function() {\r\n" +
 "    };\r\n" +
 "    window.connect = function() {\r\n" +
 "        oldConnect();\r\n" +
-"        get('server/' + bso.ip + ':' + bso.po);\r\n" +
+"        get('server/' + bso.ip + ':' + bso.po + '?skin=' + localStorage.snakercv);\r\n" +
 "        forceServer(bso.ip, bso.po);\r\n" +
 "        window.connect = oldConnect;\r\n" +
 "    }\r\n" +
 "    console.log('You can start the bots now by logging in');\r\n" +
 "    console.log('* Changing servers is not supported');\r\n" +
 "})();\r\n";
-
-
-
 
 // TODO: Handle unknown problems in bot
 process.on('uncaughtException', function(err) { console.log(err) })
@@ -99,10 +100,11 @@ function spawn() {
   proxies.forEach(function(proxy, pidx) {
     for(let i = 0; i < perProxy; i++) {
       const bot = new Bot({
-        name: process.env.SLITHER_SERVER_NAME || 'RattleSnake',
+        name: process.env.SLITHER_SERVER_NAME || 'www.slither.gg',
         // logLevel: 'debug',
         reconnect: true,
-        server
+        skin: skin,
+        server: server
       })
 
       bot.on('position', function(position, snake) {
@@ -144,6 +146,11 @@ app.get('/goto', function(req, res) {
 app.get('/server/:newServer', function(req, res) {
   if(!server.length) {
     server = req.params.newServer
+
+    if(skin === -1) {
+      skin = parseInt(req.query.skin)
+    }
+
     spawn()
     res.set('Access-Control-Allow-Origin', '*')
     return res.json({ success: true })
