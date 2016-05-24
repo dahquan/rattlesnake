@@ -86,9 +86,7 @@ bot.connect()
 
 ## Contributing
 
-***This client still needs a lot more development! Please feel free to submit pull requests, fork, star or open an issue if you happen to come across a bug.***
-
-Is there a feature we are missing? Open an issue!
+Please take a look at [CONTRIBUTING](docs/CONTRIBUTING.md)
 
 ## Special Thanks To:
 
