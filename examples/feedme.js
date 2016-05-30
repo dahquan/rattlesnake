@@ -120,7 +120,7 @@ function spawn() {
         print(bot.name + ' spawned')
       })
 
-      bot.on('disconnected', function() {
+      bot.on('dead', function() {
         alive--
         print(bot.name + ' died')
       })
