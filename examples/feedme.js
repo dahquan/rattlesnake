@@ -103,7 +103,6 @@ function spawn() {
 		  
 		  mode = 'socks';
 		  console.log('Change to Socks Proxy');
-		  console.log('' + mode + '');
 		  
 	  } else if (proxy == '#HTTP'){
 		  
@@ -111,7 +110,12 @@ function spawn() {
 		  console.log('Change to HTTP Proxy');
 		  
 		  
-	  }else {
+	  } else if (proxy == '#SOCKS4'){
+		  
+		  mode = 'socks4';
+		  console.log('Change to Socks Proxy');
+		  
+	  } else {
 	  
     for(let i = 0; i < perProxy; i++) {
       const bot = new Bot({
