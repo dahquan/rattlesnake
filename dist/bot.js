@@ -190,8 +190,8 @@ var Bot = function(_EventEmitter) {
                     requestOptions.agent = _tunnel2.default.httpOverHttp({
                         proxy: proxy
                     });
-                } else if (mode === 'socks') {
-                    console.log('Mode socks, proxy', proxyServer);
+                } else if (mode === 'socks5') {
+                    console.log('Mode socks5, proxy', proxyServer);
                     let temp = proxyServer.split(':');
                     let socksIp = temp[0]
                     let socksPort = temp[1];
@@ -200,6 +200,18 @@ var Bot = function(_EventEmitter) {
                             ipaddress: socksIp,
                             port: socksPort,
                             type: 5
+                        }
+                    });
+                } else if (mode === 'socks4') {
+                    console.log('Mode socks4, proxy', proxyServer);
+                    let temp = proxyServer.split(':');
+                    let socksIp = temp[0]
+                    let socksPort = temp[1];
+                    requestOptions.agent = new Socks.Agent({
+                        proxy: {
+                            ipaddress: socksIp,
+                            port: socksPort,
+                            type: 4
                         }
                     });
                 }
