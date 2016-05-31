@@ -1,5 +1,7 @@
 'use strict'
 
+let Socks = require('socks');
+
 import { client as WebSocketClient } from 'websocket'
 import { EventEmitter } from 'events'
 import util from 'util'
@@ -43,7 +45,7 @@ class Bot extends EventEmitter {
     this.myId = null
   }
 
-  connect(proxyServer) {
+  connect(proxyServer, mode) {
     this.logger.debug(`Connecting bot ${this.name} (${this.server})`.yellow)
     this.proxyServer = proxyServer
 
@@ -53,7 +55,6 @@ class Bot extends EventEmitter {
     // Tunnel through proxy server if the option is there
     if(typeof proxyServer === 'string') {
       const AUTH = process.env.PROXY_AUTH || null
-      let mode = 'http'
       if(proxyServer.indexOf('socks') === 0) {
         mode = 'socks'
       }
@@ -76,7 +77,20 @@ class Bot extends EventEmitter {
 
         requestOptions.agent = tunnel.httpOverHttp({
           proxy
-        })
+        });
+	} else if (mode === 'socks') {
+    //console.log('Mode socks, proxy', proxyServer);
+    let temp = proxyServer.split(':');
+    let socksIp = temp[0]
+    let socksPort = temp[1];
+    requestOptions.agent = new Socks.Agent({
+        proxy: {
+             ipaddress: socksIp,
+            port: socksPort,
+            type: 5
+        }
+    });
+}
       } else if(mode === 'socks') {
         // if(AUTH) {
         //   const idx = proxyServer.indexOf('socks://')
