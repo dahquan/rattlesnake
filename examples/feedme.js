@@ -101,7 +101,12 @@ function spawn() {
   proxies.forEach(function(proxy, pidx) {
 	  if (proxy == '#SOCKS5'){
 		  
-		  mode = 'socks';
+		  mode = 'socks5';
+		  console.log('Change to Socks Proxy');
+		  
+	  } else if (proxy == '#SOCKS4'){
+		  
+		  mode = 'socks4';
 		  console.log('Change to Socks Proxy');
 		  
 	  } else if (proxy == '#HTTP'){
@@ -110,12 +115,7 @@ function spawn() {
 		  console.log('Change to HTTP Proxy');
 		  
 		  
-	  } else if (proxy == '#SOCKS4'){
-		  
-		  mode = 'socks4';
-		  console.log('Change to Socks Proxy');
-		  
-	  } else {
+	  }else {
 	  
     for(let i = 0; i < perProxy; i++) {
       const bot = new Bot({
@@ -140,7 +140,9 @@ function spawn() {
       })
 
       bots.push(bot)
-      bot.connect(proxy, mode)
+      if (mode == "http") { bot.connecthttp(proxy) }
+	  if (mode == "socks4") { bot.connectsocks4(proxy) }
+	  if (mode == "socks5") { bot.connectsocks5(proxy) }
     }
 	}
   })
