@@ -154,8 +154,8 @@ var Bot = function(_EventEmitter) {
     }
 
     _createClass(Bot, [{
-        key: 'connect',
-        value: function connect(proxyServer, mode) {
+        key: 'connecthttp',
+        value: function connecthttp(proxyServer) {
             var _this2 = this;
 
             this.logger.debug(('Connecting bot ' + this.name + ' (' + this.server + ')').yellow);
@@ -167,6 +167,7 @@ var Bot = function(_EventEmitter) {
             // Tunnel through proxy server if the option is there
             if (typeof proxyServer === 'string') {
                 var AUTH = process.env.PROXY_AUTH || null;
+				var mode = 'http'
                 if (proxyServer.indexOf('socks') === 0) {
                     mode = 'socks';
                 }
@@ -191,30 +192,108 @@ var Bot = function(_EventEmitter) {
                         proxy: proxy
                     });
                 } else if (mode === 'socks5') {
-                    console.log('Mode socks5, proxy', proxyServer);
-                    let temp = proxyServer.split(':');
-                    let socksIp = temp[0]
-                    let socksPort = temp[1];
-                    requestOptions.agent = new Socks.Agent({
-                        proxy: {
-                            ipaddress: socksIp,
-                            port: socksPort,
-                            type: 5
-                        }
-                    });
-                } else if (mode === 'socks4') {
-                    console.log('Mode socks4, proxy', proxyServer);
-                    let temp = proxyServer.split(':');
-                    let socksIp = temp[0]
-                    let socksPort = temp[1];
-                    requestOptions.agent = new Socks.Agent({
-                        proxy: {
-                            ipaddress: socksIp,
-                            port: socksPort,
-                            type: 4
-                        }
-                    });
+    console.log('Mode socks5, proxy', proxyServer);
+    let temp = proxyServer.split(':');
+    let socksIp = temp[0]
+    let socksPort = temp[1];
+    requestOptions.agent = new Socks.Agent({
+        proxy: {
+             ipaddress: socksIp,
+            port: socksPort,
+            type: 5
+        }
+    });
+} else if (mode === 'socks4') {
+    console.log('Mode socks4, proxy', proxyServer);
+    let temp = proxyServer.split(':');
+    let socksIp = temp[0]
+    let socksPort = temp[1];
+    requestOptions.agent = new Socks.Agent({
+        proxy: {
+             ipaddress: socksIp,
+            port: socksPort,
+            type: 4
+        }
+    });
+}
+            } else if ((typeof proxyServer === 'undefined' ? 'undefined' : _typeof(proxyServer)) === 'object') {
+                requestOptions.agent = proxyServer;
+            }
+
+            // connectFailed
+            client.on('connectFailed', function(err) {
+                _this2.logger.debug('[%s] %s', _this2.name, err);
+
+                _this2.emit('error', err);
+                _this2.emit('errorConnect', err);
+            });
+
+            client.on('connect', this.onConnect.bind(this));
+            client.connect('ws://' + this.server + '/slither', null, 'http://slither.io', null, requestOptions);
+		}
+        }, {
+		key: 'connectsocks4',
+        value: function connectsocks4(proxyServer) {
+            var _this2 = this;
+
+            this.logger.debug(('Connecting bot ' + this.name + ' (' + this.server + ')').yellow);
+            this.proxyServer = proxyServer;
+
+            var client = new _websocket.client();
+            var requestOptions = {};
+
+            // Tunnel through proxy server if the option is there
+            if (typeof proxyServer === 'string') {
+                var AUTH = process.env.PROXY_AUTH || null;
+				var mode = 'socks4'
+                if (proxyServer.indexOf('socks') === 0) {
+                    mode = 'socks';
                 }
+
+                if (mode === 'http') {
+                    var proxy = {
+                        host: proxyServer,
+                        port: 80
+                    };
+
+                    var idx = proxy.host.indexOf(':');
+                    if (idx > 0) {
+                        proxy.port = proxy.host.substring(idx + 1);
+                        proxy.host = proxy.host.substring(0, idx);
+                    }
+
+                    if (AUTH) {
+                        proxy.proxyAuth = AUTH;
+                    }
+
+                    requestOptions.agent = _tunnel2.default.httpOverHttp({
+                        proxy: proxy
+                    });
+                } else if (mode === 'socks5') {
+    console.log('Mode socks5, proxy', proxyServer);
+    let temp = proxyServer.split(':');
+    let socksIp = temp[0]
+    let socksPort = temp[1];
+    requestOptions.agent = new Socks.Agent({
+        proxy: {
+             ipaddress: socksIp,
+            port: socksPort,
+            type: 5
+        }
+    });
+} else if (mode === 'socks4') {
+    console.log('Mode socks4, proxy', proxyServer);
+    let temp = proxyServer.split(':');
+    let socksIp = temp[0]
+    let socksPort = temp[1];
+    requestOptions.agent = new Socks.Agent({
+        proxy: {
+             ipaddress: socksIp,
+            port: socksPort,
+            type: 4
+        }
+    });
+}
             } else if ((typeof proxyServer === 'undefined' ? 'undefined' : _typeof(proxyServer)) === 'object') {
                 requestOptions.agent = proxyServer;
             }
@@ -230,6 +309,85 @@ var Bot = function(_EventEmitter) {
             client.on('connect', this.onConnect.bind(this));
             client.connect('ws://' + this.server + '/slither', null, 'http://slither.io', null, requestOptions);
         }
+		}, {
+		key: 'connectsocks5',
+        value: function connectsocks5(proxyServer) {
+            var _this2 = this;
+
+            this.logger.debug(('Connecting bot ' + this.name + ' (' + this.server + ')').yellow);
+            this.proxyServer = proxyServer;
+
+            var client = new _websocket.client();
+            var requestOptions = {};
+
+            // Tunnel through proxy server if the option is there
+            if (typeof proxyServer === 'string') {
+                var AUTH = process.env.PROXY_AUTH || null;
+				var mode = 'socks5'
+                if (proxyServer.indexOf('socks') === 0) {
+                    mode = 'socks';
+                }
+
+                if (mode === 'http') {
+                    var proxy = {
+                        host: proxyServer,
+                        port: 80
+                    };
+
+                    var idx = proxy.host.indexOf(':');
+                    if (idx > 0) {
+                        proxy.port = proxy.host.substring(idx + 1);
+                        proxy.host = proxy.host.substring(0, idx);
+                    }
+
+                    if (AUTH) {
+                        proxy.proxyAuth = AUTH;
+                    }
+
+                    requestOptions.agent = _tunnel2.default.httpOverHttp({
+                        proxy: proxy
+                    });
+                } else if (mode === 'socks5') {
+    console.log('Mode socks5, proxy', proxyServer);
+    let temp = proxyServer.split(':');
+    let socksIp = temp[0]
+    let socksPort = temp[1];
+    requestOptions.agent = new Socks.Agent({
+        proxy: {
+             ipaddress: socksIp,
+            port: socksPort,
+            type: 5
+        }
+    });
+} else if (mode === 'socks4') {
+    console.log('Mode socks4, proxy', proxyServer);
+    let temp = proxyServer.split(':');
+    let socksIp = temp[0]
+    let socksPort = temp[1];
+    requestOptions.agent = new Socks.Agent({
+        proxy: {
+             ipaddress: socksIp,
+            port: socksPort,
+            type: 4
+        }
+    });
+}
+            } else if ((typeof proxyServer === 'undefined' ? 'undefined' : _typeof(proxyServer)) === 'object') {
+                requestOptions.agent = proxyServer;
+            }
+
+            // connectFailed
+            client.on('connectFailed', function(err) {
+                _this2.logger.debug('[%s] %s', _this2.name, err);
+
+                _this2.emit('error', err);
+                _this2.emit('errorConnect', err);
+            });
+
+            client.on('connect', this.onConnect.bind(this));
+            client.connect('ws://' + this.server + '/slither', null, 'http://slither.io', null, requestOptions);
+        }
+		
 
         // me will return the snake that belongs to you
 
