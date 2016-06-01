@@ -45,7 +45,7 @@ class Bot extends EventEmitter {
     this.myId = null
   }
 
-  connect(proxyServer, mode) {
+  connecthttp(proxyServer) {
     this.logger.debug(`Connecting bot ${this.name} (${this.server})`.yellow)
     this.proxyServer = proxyServer
 
@@ -55,6 +55,7 @@ class Bot extends EventEmitter {
     // Tunnel through proxy server if the option is there
     if(typeof proxyServer === 'string') {
       const AUTH = process.env.PROXY_AUTH || null
+	  var mode = 'http'
       if(proxyServer.indexOf('socks') === 0) {
         mode = 'socks'
       }
@@ -91,26 +92,18 @@ class Bot extends EventEmitter {
         }
     });
 } else if (mode === 'socks4') {
-    console.log('Mode socks4, proxy', proxyServer);
-    let temp = proxyServer.split(':');
-    let socksIp = temp[0]
-    let socksPort = temp[1];
-    requestOptions.agent = new Socks.Agent({
-        proxy: {
-             ipaddress: socksIp,
-            port: socksPort,
-            type: 4
-        }
-    });
-}
-      } else if(mode === 'socks') {
-        // if(AUTH) {
-        //   const idx = proxyServer.indexOf('socks://')
-        //   proxyServer = `socks://${AUTH}@${proxyServer.substring(idx + 8)}`
-        // }
-        //
-        // requestOptions.agent = new SocksProxyAgent(proxyServer)
-        // this.logger.debug('[%s] Using %s proxy server', this.name, mode)
+                    console.log('Mode socks4, proxy', proxyServer);
+                    let temp = proxyServer.split(':');
+                    let socksIp = temp[0]
+                    let socksPort = temp[1];
+                    requestOptions.agent = new Socks.Agent({
+                        proxy: {
+                            ipaddress: socksIp,
+                            port: socksPort,
+                            type: 4
+                        }
+                    });
+                }
       }
     } else if(typeof proxyServer === 'object') {
       requestOptions.agent = proxyServer
@@ -127,6 +120,132 @@ class Bot extends EventEmitter {
     client.on('connect', this.onConnect.bind(this))
     client.connect(`ws://${this.server}/slither`, null, 'http://slither.io', null, requestOptions)
   }
+  connectsocks4(proxyServer) {
+    this.logger.debug(`Connecting bot ${this.name} (${this.server})`.yellow)
+    this.proxyServer = proxyServer
+
+    const client = new WebSocketClient()
+    const requestOptions = {}
+
+    // Tunnel through proxy server if the option is there
+    if(typeof proxyServer === 'string') {
+      const AUTH = process.env.PROXY_AUTH || null
+	  var mode = 'socks4'
+      if(proxyServer.indexOf('socks') === 0) {
+        mode = 'socks'
+      }
+
+      if(mode === 'http') {
+        const proxy = {
+          host: proxyServer,
+          port: 80
+        }
+
+        let idx = proxy.host.indexOf(':')
+        if(idx > 0) {
+          proxy.port = proxy.host.substring(idx + 1)
+          proxy.host = proxy.host.substring(0, idx)
+        }
+
+        if(AUTH) {
+          proxy.proxyAuth = AUTH
+        }
+
+        requestOptions.agent = tunnel.httpOverHttp({
+          proxy
+        });
+	} else if (mode === 'socks5') {
+    console.log('Mode socks5, proxy', proxyServer);
+    let temp = proxyServer.split(':');
+    let socksIp = temp[0]
+    let socksPort = temp[1];
+    requestOptions.agent = new Socks.Agent({
+        proxy: {
+             ipaddress: socksIp,
+            port: socksPort,
+            type: 5
+        }
+    });
+} else if (mode === 'socks4') {
+                    console.log('Mode socks4, proxy', proxyServer);
+                    let temp = proxyServer.split(':');
+                    let socksIp = temp[0]
+                    let socksPort = temp[1];
+                    requestOptions.agent = new Socks.Agent({
+                        proxy: {
+                            ipaddress: socksIp,
+                            port: socksPort,
+                            type: 4
+                        }
+                    });
+                }
+      }
+    } else if(typeof proxyServer === 'object') {
+      requestOptions.agent = proxyServer
+    }
+	connectsocks5(proxyServer) {
+    this.logger.debug(`Connecting bot ${this.name} (${this.server})`.yellow)
+    this.proxyServer = proxyServer
+
+    const client = new WebSocketClient()
+    const requestOptions = {}
+
+    // Tunnel through proxy server if the option is there
+    if(typeof proxyServer === 'string') {
+      const AUTH = process.env.PROXY_AUTH || null
+	  var mode = 'socks5'
+      if(proxyServer.indexOf('socks') === 0) {
+        mode = 'socks'
+      }
+
+      if(mode === 'http') {
+        const proxy = {
+          host: proxyServer,
+          port: 80
+        }
+
+        let idx = proxy.host.indexOf(':')
+        if(idx > 0) {
+          proxy.port = proxy.host.substring(idx + 1)
+          proxy.host = proxy.host.substring(0, idx)
+        }
+
+        if(AUTH) {
+          proxy.proxyAuth = AUTH
+        }
+
+        requestOptions.agent = tunnel.httpOverHttp({
+          proxy
+        });
+	} else if (mode === 'socks5') {
+    console.log('Mode socks5, proxy', proxyServer);
+    let temp = proxyServer.split(':');
+    let socksIp = temp[0]
+    let socksPort = temp[1];
+    requestOptions.agent = new Socks.Agent({
+        proxy: {
+             ipaddress: socksIp,
+            port: socksPort,
+            type: 5
+        }
+    });
+} else if (mode === 'socks4') {
+                    console.log('Mode socks4, proxy', proxyServer);
+                    let temp = proxyServer.split(':');
+                    let socksIp = temp[0]
+                    let socksPort = temp[1];
+                    requestOptions.agent = new Socks.Agent({
+                        proxy: {
+                            ipaddress: socksIp,
+                            port: socksPort,
+                            type: 4
+                        }
+                    });
+                }
+      }
+    } else if(typeof proxyServer === 'object') {
+      requestOptions.agent = proxyServer
+    }
 
   // me will return the snake that belongs to you
   me() {
