@@ -24,7 +24,7 @@ if(!!process.env.SLITHER_PER_PROXY) {
 }
 
 let skin = -1
-
+var mode = 'http';
 let server = ''
 let gotoX = 0
 let gotoY = 0
