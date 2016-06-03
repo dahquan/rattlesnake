@@ -12,22 +12,19 @@
 //
 // This example will
 // * Needs proxy servers
-
 const Bot = require('../dist')
 const express = require('express')
 const fs = require('fs')
 const path = require('path')
 
-// Change the amount of bots per proxy
+
 let perProxy = 2
 if(!!process.env.SLITHER_PER_PROXY) {
   perProxy = parseInt(process.env.SLITHER_PER_PROXY)
 }
 
-// Skin to use on the bots
-// If skin === -1: Bot will use same skin as you
 let skin = -1
-
+var mode = 'http';
 let server = ''
 let gotoX = 0
 let gotoY = 0
@@ -88,11 +85,10 @@ const INJECT =  "(function() {\r\n" +
 "    console.log('* Changing servers is not supported');\r\n" +
 "})();\r\n";
 
-// TODO: Handle unknown problems in bot
 process.on('uncaughtException', function(err) { console.log(err) })
 
-// Bots alive
 let alive = 0
+
 
 function print(msg) {
   console.log('[Bots Alive: ' + alive + ']\t\t' + msg)
@@ -102,10 +98,27 @@ function spawn() {
   print('Spawning ' + (proxies.length * perProxy) + ' snakes')
 
   proxies.forEach(function(proxy, pidx) {
+	  if (proxy == '#SOCKS5'){
+		  
+		  mode = 'socks5';
+		  console.log('Change to Socks Proxy');
+		  
+	  } else if (proxy == '#SOCKS4'){
+		  
+		  mode = 'socks4';
+		  console.log('Change to Socks Proxy');
+		  
+	  } else if (proxy == '#HTTP'){
+		  
+		  mode = 'http';
+		  console.log('Change to HTTP Proxy');
+		  
+		  
+	  }else {
+	  
     for(let i = 0; i < perProxy; i++) {
       const bot = new Bot({
         name: process.env.SLITHER_SERVER_NAME || 'www.slither.gg',
-        // logLevel: 'debug',
         reconnect: true,
         skin: skin,
         server: server
@@ -120,26 +133,23 @@ function spawn() {
         print(bot.name + ' spawned')
       })
 
-      bot.on('disconnected', function() {
+      bot.on('dead', function() {
         alive--
         print(bot.name + ' died')
       })
 
       bots.push(bot)
-      bot.connect(proxy)
+      if (mode === 'http') { bot.connecthttp(proxy) }
+	  if (mode === 'socks4') { bot.connectsocks4(proxy) }
+	  if (mode === 'socks5') { bot.connectsocks5(proxy) }
     }
+	}
   })
 }
 
-// Open a tiny http server that can be used to change the gotoX-Y
-// Make the bots go to my position
 
 const app = express()
 
-// GET /
-// With query params:
-//  x = new gotoX
-//  y = new gotoY
 app.get('/goto', function(req, res) {
   res.set('Access-Control-Allow-Origin', '*')
   res.end('ok')
@@ -148,7 +158,6 @@ app.get('/goto', function(req, res) {
   gotoY = req.query.y
 })
 
-// GET /server/:newServer
 app.get('/server/:newServer', function(req, res) {
   if(!server.length) {
     server = req.params.newServer
@@ -166,7 +175,6 @@ app.get('/server/:newServer', function(req, res) {
   res.json({ error: 'Changing servers not implemented yet, restart the node app'})
 })
 
-// GET /speed/:on/off
 app.get('/speed/:state', function(req, res) {
   res.set('Access-Control-Allow-Origin', '*')
   res.end('ok')
@@ -179,7 +187,6 @@ app.get('/speed/:state', function(req, res) {
   })
 })
 
-// GET /inject
 app.get('/inject', function(req, res) {
   res.set('Access-Control-Allow-Origin', '*')
   res.end(INJECT)

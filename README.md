@@ -35,12 +35,12 @@ $ npm install --save rattlesnake
 - [x] Snake position
 - [x] Retrieve Leaderboard data
 - [x] Events (eat food, dead, spawned, etc...)
+- [x] Proxy auth, HTTPS, SOCKS
 - [ ] Determine snake length
 - [ ] Plugin system
 - [ ] Track food
 - [ ] Track snake angles
 - [ ] Sectors
-- [ ] Proxy auth, HTTPS, SOCKS
 - [ ] ???
 
 ## Code Example
