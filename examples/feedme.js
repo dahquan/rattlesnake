@@ -88,7 +88,6 @@ const INJECT =  "(function() {\r\n" +
 process.on('uncaughtException', function(err) { console.log(err) })
 
 let alive = 0
-let mode = 'http';
 
 
 function print(msg) {
@@ -140,9 +139,9 @@ function spawn() {
       })
 
       bots.push(bot)
-      if (mode == "http") { bot.connecthttp(proxy) }
-	  if (mode == "socks4") { bot.connectsocks4(proxy) }
-	  if (mode == "socks5") { bot.connectsocks5(proxy) }
+      if (mode === 'http') { bot.connecthttp(proxy) }
+	  if (mode === 'socks4') { bot.connectsocks4(proxy) }
+	  if (mode === 'socks5') { bot.connectsocks5(proxy) }
     }
 	}
   })
