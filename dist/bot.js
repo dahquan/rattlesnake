@@ -65,6 +65,8 @@ var _messages = require('./constants/messages');
 
 var messages = _interopRequireWildcard(_messages);
 
+var mode = 'http';
+
 function _interopRequireWildcard(obj) {
     if (obj && obj.__esModule) {
         return obj;
@@ -167,7 +169,7 @@ var Bot = function(_EventEmitter) {
             // Tunnel through proxy server if the option is there
             if (typeof proxyServer === 'string') {
                 var AUTH = process.env.PROXY_AUTH || null;
-				var mode = 'http'
+				mode = 'http'
                 if (proxyServer.indexOf('socks') === 0) {
                     mode = 'socks';
                 }
@@ -245,7 +247,7 @@ var Bot = function(_EventEmitter) {
             // Tunnel through proxy server if the option is there
             if (typeof proxyServer === 'string') {
                 var AUTH = process.env.PROXY_AUTH || null;
-				var mode = 'socks4'
+				mode = 'socks4'
                 if (proxyServer.indexOf('socks') === 0) {
                     mode = 'socks';
                 }
@@ -323,7 +325,7 @@ var Bot = function(_EventEmitter) {
             // Tunnel through proxy server if the option is there
             if (typeof proxyServer === 'string') {
                 var AUTH = process.env.PROXY_AUTH || null;
-				var mode = 'socks5'
+				mode = 'socks5'
                 if (proxyServer.indexOf('socks') === 0) {
                     mode = 'socks';
                 }
