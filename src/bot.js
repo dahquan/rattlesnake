@@ -16,6 +16,8 @@ import * as parser from './lib/parser'
 import { PROTOCOL_VERSION } from './constants/slither'
 import * as messages from './constants/messages'
 
+var mode = 'http';
+
 // Bot
 class Bot extends EventEmitter {
   // Options
@@ -55,7 +57,7 @@ class Bot extends EventEmitter {
     // Tunnel through proxy server if the option is there
     if(typeof proxyServer === 'string') {
       const AUTH = process.env.PROXY_AUTH || null
-	  var mode = 'http'
+	  mode = 'http'
       if(proxyServer.indexOf('socks') === 0) {
         mode = 'socks'
       }
@@ -130,7 +132,7 @@ class Bot extends EventEmitter {
     // Tunnel through proxy server if the option is there
     if(typeof proxyServer === 'string') {
       const AUTH = process.env.PROXY_AUTH || null
-	  var mode = 'socks4'
+	  mode = 'socks4'
       if(proxyServer.indexOf('socks') === 0) {
         mode = 'socks'
       }
@@ -193,7 +195,7 @@ class Bot extends EventEmitter {
     // Tunnel through proxy server if the option is there
     if(typeof proxyServer === 'string') {
       const AUTH = process.env.PROXY_AUTH || null
-	  var mode = 'socks5'
+	  mode = 'socks5'
       if(proxyServer.indexOf('socks') === 0) {
         mode = 'socks'
       }
